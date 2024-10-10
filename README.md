@@ -6,10 +6,12 @@
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
-[🍥 Use for Free](https://mayeenulislam.github.io/number-table-quiz)
+[🎈 **Use for Free**](https://mayeenulislam.github.io/number-table-quiz)
 
-![screnshot](https://github.com/user-attachments/assets/dafa16b4-e706-46d9-9832-51f1d562178a)
+![screenshot](https://github.com/user-attachments/assets/dafa16b4-e706-46d9-9832-51f1d562178a)
 
 This code is mostly AI-generated. The sole purpose of this code was to **let my child practice and remember the number table** in a gamified way.
 
-I initiated the prompting with Claude.ai, then fine-tuned with Gemini 1.5 Pro 002, and finally optimized the code with ChatGPT-4o.
+## Credits
+
+I initiated the prompting with Claude.ai, then fine-tuned with Gemini 1.5 Pro 002. I took sounds from FreeSound.org and SVGs from SVGRepo.com.
