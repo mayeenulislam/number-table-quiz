@@ -8,7 +8,7 @@
 
 [🎈 **Use for Free**](https://mayeenulislam.github.io/number-table-quiz)
 
-![screenshot](https://github.com/user-attachments/assets/dafa16b4-e706-46d9-9832-51f1d562178a)
+![screenshot](https://github.com/user-attachments/assets/4311352b-4d67-4da6-b5fa-474ed199a48d)
 
 This code is mostly AI-generated. The sole purpose of this code was to **let my child practice and remember the number table** in a gamified way.
 
