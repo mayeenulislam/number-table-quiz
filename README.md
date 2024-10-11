@@ -1,8 +1,8 @@
 # Number Table Quiz
 
 > [!NOTE]
-> **Mostly AI-Generated Code.** Fine-tuned very little.<br/>
-> Made for Kids for learning with gamification.
+> **Mostly AI-Generated Code.** Fine-tuned a very little.<br/>
+> Made for my Kids to learn with gamification.
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
