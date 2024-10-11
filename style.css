@@ -1,0 +1,249 @@
+body {
+  font-family: "Inria Sans", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background: linear-gradient(135deg, #6ee7b7, #3b82f6);
+  color: #333;
+  transition: all 0.5s ease;
+}
+.celebration-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden; /* Important: contain particles within the background */
+}
+.container {
+  width: 90%;
+  max-width: 500px;
+  padding: 30px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 10;
+}
+#setup,
+#quiz,
+#results {
+  text-align: center;
+  transition: opacity 0.5s ease-in-out;
+}
+footer {
+  text-align: center;
+  font-size: 12px;
+  margin-top: 20px;
+  color: gray;
+}
+
+footer a {
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+h1 {
+  color: #2563eb;
+  font-size: 2.5em;
+  margin-bottom: 30px;
+}
+#instructions {
+  margin-bottom: 30px; /* Space below the instructions */
+  font-size: 1.2em; /* Slightly larger font size */
+  color: #286dcd; /* Greyish color for instructions */
+}
+
+.input-group {
+  display: flex; /* Use flexbox for horizontal layout */
+  justify-content: center; /* Center the input fields */
+  align-items: center; /* Vertically align the items */
+  margin-bottom: 20px; /* Add some bottom margin */
+}
+
+.input-field {
+  margin: 0 10px; /* Spacing between input fields */
+  text-align: center; /* Center the content within each input field */
+}
+
+.input-field label {
+  display: block; /* Make labels block elements */
+  margin-bottom: 5px; /* Space between label and input */
+}
+
+.separator {
+  font-size: 1.2em; /* Larger size for the separator */
+  margin: 0 10px; /* Same margin as input-field */
+  padding-top: 20px;
+}
+input[type="number"] {
+  width: 100px;
+  padding: 12px;
+  margin: 10px;
+  font-size: 18px;
+  border: 3px solid #6ee7b7;
+  border-radius: 10px;
+  font-family: "Inria Sans", sans-serif;
+}
+button {
+  padding: 12px 25px;
+  font-size: 20px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+  font-family: "Inria Sans", sans-serif;
+}
+button:hover {
+  background-color: #1d4ed8;
+  transform: scale(1.05);
+}
+#timer {
+  font-size: 36px;
+  margin: 15px 0;
+  color: #2563eb;
+  font-weight: bold;
+}
+#question {
+  font-size: 32px;
+  margin: 25px 0;
+  color: #1f2937;
+}
+#progress {
+  margin: 15px 0;
+  font-size: 18px;
+}
+.hidden {
+  display: none;
+  opacity: 0;
+}
+.slide-enter {
+  animation: slideIn 0.5s ease-out;
+}
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.question-number {
+  color: #2563eb;
+  font-weight: bold;
+}
+.gray-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+#motivationalQuote {
+  font-size: 24px;
+  margin-top: 20px;
+  font-weight: bold;
+  color: #4b5563;
+}
+#submitButton:disabled {
+  background-color: #9ca3af;
+  cursor: default;
+  transform: none;
+}
+.clown {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: clownFloat 3s ease-in-out infinite;
+  border-radius: 100%;
+  outline: 5px solid #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.clown.clown-mini {
+  top: -35px;
+}
+
+@keyframes clownFloat {
+  0% {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  25% {
+    transform: translateX(-50%) rotate(7deg);
+  }
+  50% {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  75% {
+    transform: translateX(-50%) rotate(-7deg);
+  }
+  100% {
+    transform: translateX(-50%) rotate(0deg);
+  }
+}
+
+.particle {
+  opacity: 0;
+  position: absolute;
+  width: 10px; /* Adjust size */
+  height: 10px; /* Adjust size */
+  border-radius: 50%;
+  animation: float 5s linear infinite; /* Changed animation properties */
+  animation-fill-mode: forwards; /* Keep the final state of the animation */
+  animation-delay: calc(var(--start-time) * 3s); /* Random delay up to 3s */
+  pointer-events: none;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) scale(0); /* Start from bottom, invisible */
+    opacity: 0;
+  }
+  1% {
+    opacity: 1; /* Quickly become visible after animation starts */
+  }
+  100% {
+    transform: translateY(-20vh) scale(1) rotate(360deg); /* Float up, rotate */
+    opacity: 0; /* Fade out at the top */
+  }
+}
+
+.difficulty-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px; /* Space below the button group */
+}
+
+.difficulty-buttons button {
+  margin: 0 5px; /* Space between buttons */
+  padding: 8px 15px; /* Smaller padding */
+  font-size: 16px; /* Smaller font size */
+  border: 2px solid #5a8cf8; /* Outlined style */
+  border-radius: 5px;
+  background-color: transparent; /* Transparent background */
+  color: #2563eb; /* Blue text color */
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+}
+
+.difficulty-buttons button.selected,
+.difficulty-buttons button:hover {
+  background-color: #5a8cf8; /* Blue background on hover/selected */
+  color: white; /* White text on hover/selected */
+}

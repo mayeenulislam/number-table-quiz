@@ -8,237 +8,15 @@
       href="https://fonts.googleapis.com/css2?family=Inria+Sans:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" href="assets/images/clown-circus.svg" sizes="any" type="image/svg+xml">
-    <style>
-      body {
-        font-family: "Inria Sans", sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-        background: linear-gradient(135deg, #6ee7b7, #3b82f6);
-        color: #333;
-        transition: all 0.5s ease;
-      }
-      .celebration-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 1;
-        overflow: hidden; /* Important: contain particles within the background */
-      }
-      .container {
-        width: 90%;
-        max-width: 500px;
-        padding: 30px;
-        background-color: white;
-        border-radius: 20px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        position: relative;
-        z-index: 10;
-      }
-      #setup,
-      #quiz,
-      #results {
-        text-align: center;
-        transition: opacity 0.5s ease-in-out;
-      }
-      footer {
-        text-align: center;
-        font-size: 12px;
-        margin-top: 20px;
-        color: gray;
-      }
-
-      footer a {
-        text-decoration: none;
-      }
-
-      footer a:hover {
-        text-decoration: underline;
-      }
-      h1 {
-        color: #2563eb;
-        font-size: 2.5em;
-        margin-bottom: 30px;
-      }
-      #instructions {
-        margin-bottom: 30px; /* Space below the instructions */
-        font-size: 1.2em; /* Slightly larger font size */
-        color: #286dcd; /* Greyish color for instructions */
-      }
-
-      .input-group {
-        display: flex; /* Use flexbox for horizontal layout */
-        justify-content: center; /* Center the input fields */
-        align-items: center; /* Vertically align the items */
-        margin-bottom: 20px; /* Add some bottom margin */
-      }
-
-      .input-field {
-        margin: 0 10px; /* Spacing between input fields */
-        text-align: center; /* Center the content within each input field */
-      }
-
-      .input-field label {
-        display: block; /* Make labels block elements */
-        margin-bottom: 5px; /* Space between label and input */
-      }
-
-      .separator {
-        font-size: 1.2em; /* Larger size for the separator */
-        margin: 0 10px; /* Same margin as input-field */
-        padding-top: 20px;
-      }
-      input[type="number"] {
-        width: 100px;
-        padding: 12px;
-        margin: 10px;
-        font-size: 18px;
-        border: 3px solid #6ee7b7;
-        border-radius: 10px;
-        font-family: "Inria Sans", sans-serif;
-      }
-      button {
-        padding: 12px 25px;
-        font-size: 20px;
-        background-color: #2563eb;
-        color: white;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: transform 0.2s, background-color 0.2s;
-        font-family: "Inria Sans", sans-serif;
-      }
-      button:hover {
-        background-color: #1d4ed8;
-        transform: scale(1.05);
-      }
-      #timer {
-        font-size: 36px;
-        margin: 15px 0;
-        color: #2563eb;
-        font-weight: bold;
-      }
-      #question {
-        font-size: 32px;
-        margin: 25px 0;
-        color: #1f2937;
-      }
-      #progress {
-        margin: 15px 0;
-        font-size: 18px;
-      }
-      .hidden {
-        display: none;
-        opacity: 0;
-      }
-      .slide-enter {
-        animation: slideIn 0.5s ease-out;
-      }
-      @keyframes slideIn {
-        from {
-          opacity: 0;
-          transform: translateX(50px);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-      .question-number {
-        color: #2563eb;
-        font-weight: bold;
-      }
-      .gray-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 5;
-        opacity: 0;
-        transition: opacity 0.5s ease;
-        pointer-events: none;
-      }
-      #motivationalQuote {
-        font-size: 24px;
-        margin-top: 20px;
-        font-weight: bold;
-        color: #4b5563;
-      }
-      #submitButton:disabled {
-        background-color: #9ca3af;
-        cursor: default;
-        transform: none;
-      }
-      .clown {
-        position: absolute;
-        top: -50px;
-        left: 50%;
-        transform: translateX(-50%);
-        animation: clownFloat 3s ease-in-out infinite;
-        border-radius: 100%;
-        outline: 5px solid #fff;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      }
-
-      .clown.clown-mini {
-        top: -35px;
-      }
-
-      @keyframes clownFloat {
-        0% {
-          transform: translateX(-50%) rotate(0deg);
-        }
-        25% {
-          transform: translateX(-50%) rotate(7deg);
-        }
-        50% {
-          transform: translateX(-50%) rotate(0deg);
-        }
-        75% {
-          transform: translateX(-50%) rotate(-7deg);
-        }
-        100% {
-          transform: translateX(-50%) rotate(0deg);
-        }
-      }
-
-      .particle {
-        opacity: 0;
-        position: absolute;
-        width: 10px; /* Adjust size */
-        height: 10px; /* Adjust size */
-        border-radius: 50%;
-        animation: float 5s linear infinite; /* Changed animation properties */
-        animation-fill-mode: forwards; /* Keep the final state of the animation */
-        animation-delay: calc(
-          var(--start-time) * 3s
-        ); /* Random delay up to 3s */
-        pointer-events: none;
-      }
-
-      @keyframes float {
-        0% {
-          transform: translateY(100vh) scale(0); /* Start from bottom, invisible */
-          opacity: 0;
-        }
-        1% {
-          opacity: 1; /* Quickly become visible after animation starts */
-        }
-        100% {
-          transform: translateY(-20vh) scale(1) rotate(360deg); /* Float up, rotate */
-          opacity: 0; /* Fade out at the top */
-        }
-      }
-    </style>
+    <link
+      rel="icon"
+      href="assets/images/clown-circus.svg"
+      sizes="any"
+      type="image/svg+xml"
+    />
+    <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
     <div class="gray-overlay"></div>
     <div class="celebration-bg"></div>
@@ -251,20 +29,34 @@
           width="100"
         />
         <h1>Number Table Quiz</h1>
+        <div style="margin-bottom: 10px">Choose a Level of Difficulty</div>
+        <div class="difficulty-buttons">
+          <button id="lowButton" data-difficulty="low">Low</button>
+          <button id="mediumButton" data-difficulty="medium">Medium</button>
+          <button id="highButton" data-difficulty="high" class="selected">
+            High
+          </button>
+        </div>
+
         <div id="instructions">
-            Get <strong>95%+</strong> marks from <strong>20 questions</strong>, <strong>5 seconds</strong> each
+          Get <strong>95%+</strong> marks from <strong>20 questions</strong>,
+          <strong>5 seconds</strong> each.
         </div>
-        <div class="input-group">
-            <div class="input-field">
-                <label for="minRange">Minimum number:</label>
-                <input type="number" id="minRange" value="1" min="1" />
-            </div>
-            <span class="separator">→</span> <div class="input-field">
-                <label for="maxRange">Maximum number:</label>
-                <input type="number" id="maxRange" value="10" min="1" />
-            </div>
+        <div class="input-group hidden">
+          <div class="input-field">
+            <label for="minRange">Minimum number</label>
+            <input type="number" id="minRange" value="1" min="1" />
+          </div>
+          <span class="separator">→</span>
+          <div class="input-field">
+            <label for="maxRange">Maximum number</label>
+            <input type="number" id="maxRange" value="10" min="1" />
+          </div>
         </div>
-        <button id="startButton">Start Quiz</button>
+        <button id="startButton">
+          Start Quiz
+          <svg style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none" viewBox="0 0 24 24"><path stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m10 16 4-4-4-4"/></svg>
+        </button>
       </div>
 
       <div id="quiz" class="hidden">
@@ -309,267 +101,13 @@
           <span>Try Again</span>
         </button>
       </div>
-      <footer>Made by <a href="https://mayeenulislam.github.io/">Mayeenul Islam</a> with the help of AI</footer>
+      <footer>
+        Made by
+        <a href="https://mayeenulislam.github.io/">Mayeenul Islam</a> with the
+        help of AI
+      </footer>
     </div>
 
-    <script>
-      let currentQuestion = 0;
-      let correctAnswers = 0;
-      let timer;
-      let questions = [];
-      let timerInterval;
-
-      const SOUNDS = {
-        tick: new Audio("./assets/sounds/clock-ticking.mp3"),
-        success: new Audio("./assets/sounds/success.mp3"),
-        failure: new Audio("./assets/sounds/failed.mp3"),
-      };
-
-      const MOTIVATIONAL_QUOTES = [
-        "You're making progress! Keep going! 🌟",
-        "Every mistake is a step toward success! 🚀",
-        "You're braver than you believe! 💪",
-        "The more you practice, the better you get! 📚",
-        "Your effort today is your success tomorrow! ⭐",
-      ];
-
-      // Preload sounds
-      Object.values(SOUNDS).forEach((sound) => {
-        sound.load();
-      });
-
-      document.getElementById("answer").addEventListener("input", function () {
-        document.getElementById("submitButton").disabled = this.value === "";
-      });
-
-      document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll('input[type="number"]').forEach((input) => {
-          input.addEventListener("input", function () {
-            if (this.value < 0) {
-              this.value = 0;
-            }
-          });
-        });
-
-        document
-          .getElementById("startButton")
-          .addEventListener("click", startQuiz);
-        document
-          .getElementById("resetButton")
-          .addEventListener("click", resetQuiz);
-        document
-          .getElementById("submitButton")
-          .addEventListener("click", checkAnswer);
-
-        document.addEventListener("keydown", function (event) {
-          if (
-            event.key === "Enter" &&
-            document.getElementById("setup").style.display !== "none"
-          ) {
-            // Check if the focused element is within the setup form
-            if (
-              document.getElementById("setup").contains(event.target) &&
-              (event.target.tagName === "INPUT" ||
-                event.target.tagName === "BUTTON")
-            ) {
-              event.preventDefault();
-              startButton.click();
-            }
-          }
-        });
-
-        document
-          .getElementById("answer")
-          .addEventListener("keypress", function (e) {
-            if (e.key === "Enter") {
-              if (document.getElementById("submitButton").disabled) {
-                e.preventDefault();
-                return;
-              }
-              checkAnswer();
-            }
-          });
-      });
-
-      function createParticles() {
-        const celebrationBg = document.querySelector(".celebration-bg");
-        celebrationBg.innerHTML = "";
-        const colors = ["#FFD700", "#FFA500", "#FF69B4", "#00FF00", "#40E0D0"];
-
-        for (let i = 0; i < 50; i++) {
-          const particle = document.createElement("div");
-          particle.className = "particle";
-          particle.style.backgroundColor =
-            colors[Math.floor(Math.random() * colors.length)];
-          particle.style.left = Math.random() * 100 + "vw";
-          particle.style.animationDelay = Math.random() * 2 + "s";
-          celebrationBg.appendChild(particle);
-        }
-      }
-
-      function startQuiz() {
-        const min = Math.max(
-          1,
-          parseInt(document.getElementById("minRange").value) || 1
-        );
-        const max = Math.max(
-          1,
-          parseInt(document.getElementById("maxRange").value) || 10
-        );
-
-        if (min >= max) {
-          alert("Maximum number must be greater than minimum number");
-          return;
-        }
-
-        questions = generateQuestions(min, max);
-        document.getElementById("setup").classList.add("hidden");
-        const quizElement = document.getElementById("quiz");
-        quizElement.classList.remove("hidden");
-        quizElement.classList.add("slide-enter");
-        currentQuestion = 0;
-        correctAnswers = 0;
-        showQuestion();
-      }
-
-      function generateQuestions(min, max) {
-        let questionList = [];
-        for (let i = 0; i < 20; i++) {
-          const num1 = Math.floor(Math.random() * (max - min + 1)) + min;
-          const num2 = Math.floor(Math.random() * (max - min + 1)) + min;
-          questionList.push({
-            question: `${num1} × ${num2} = ?`,
-            answer: num1 * num2,
-          });
-        }
-        return questionList;
-      }
-
-      function showQuestion() {
-        if (currentQuestion >= 20) {
-          showResults();
-          return;
-        }
-
-        const quizElement = document.getElementById("quiz");
-        quizElement.classList.remove("slide-enter");
-        void quizElement.offsetWidth; // Trigger reflow
-        quizElement.classList.add("slide-enter");
-
-        const questionEl = document.getElementById("question");
-        const progressEl = document.getElementById("progress");
-        const answerEl = document.getElementById("answer");
-
-        questionEl.textContent = questions[currentQuestion].question;
-        progressEl.innerHTML = `Question <span class="question-number">${
-          currentQuestion + 1
-        }</span>/20`;
-        document.getElementById("submitButton").disabled = true; // Disable on new question
-        answerEl.value = "";
-        answerEl.focus();
-
-        timer = 5;
-        updateTimer();
-
-        if (timerInterval) clearInterval(timerInterval);
-        timerInterval = setInterval(() => {
-          timer--;
-          SOUNDS.tick.currentTime = 0;
-          SOUNDS.tick.play();
-          updateTimer();
-          if (timer <= 0) {
-            checkAnswer();
-          }
-        }, 1000);
-      }
-
-      function updateTimer() {
-        document.getElementById("timer").textContent = timer;
-      }
-
-      function checkAnswer() {
-        clearInterval(timerInterval);
-        SOUNDS.tick.pause(); // Stop the tick sound
-        SOUNDS.tick.currentTime = 0; // Reset tick sound
-        const userAnswer =
-          parseInt(document.getElementById("answer").value) || 0;
-        if (userAnswer === questions[currentQuestion].answer) {
-          correctAnswers++;
-        }
-        currentQuestion++;
-        showQuestion();
-      }
-
-      function showResults() {
-        document.getElementById("quiz").classList.add("hidden");
-        const resultsElement = document.getElementById("results");
-        resultsElement.classList.remove("hidden");
-        resultsElement.classList.add("slide-enter");
-
-        const percentage = (correctAnswers / 20) * 100;
-        const scoreEl = document.getElementById("score");
-        const feedbackEl = document.getElementById("feedback");
-        const quoteEl = document.getElementById("motivationalQuote");
-
-        scoreEl.textContent = `You got ${correctAnswers} out of 20 correct (${percentage}%)`;
-
-        if (percentage >= 95) {
-          feedbackEl.textContent =
-            "Congratulations! You're a multiplication master!";
-          feedbackEl.style.fontSize = "22px";
-          feedbackEl.style.fontWeight = "700";
-          feedbackEl.style.color = "#2563EB"; // Blue color
-          scoreEl.style.color = "#3CB371"; // MediumSeaGreen
-          document.querySelector("#resetButton > span").textContent = "Replay";
-          SOUNDS.success.play();
-          createParticles();
-          document.body.style.background =
-            "linear-gradient(135deg, #6EE7B7, #3B82F6)";
-        } else {
-          feedbackEl.textContent = "Sorry! Keep practicing...";
-          feedbackEl.style.fontSize = "22px";
-          feedbackEl.style.fontWeight = "700";
-          feedbackEl.style.color = "#DC143C"; // Crimson Red
-          scoreEl.style.color = "#000000";
-          document.querySelector("#resetButton > span").textContent =
-            "Try Again";
-          quoteEl.textContent =
-            MOTIVATIONAL_QUOTES[
-              Math.floor(Math.random() * MOTIVATIONAL_QUOTES.length)
-            ];
-          SOUNDS.failure.play();
-          document.querySelector(".gray-overlay").style.opacity = "1";
-          document.body.style.background =
-            "linear-gradient(135deg, #9CA3AF, #6B7280)";
-        }
-      }
-
-      function resetQuiz() {
-        document.getElementById("results").classList.add("hidden");
-        document.getElementById("setup").classList.remove("hidden");
-        document.querySelector(".gray-overlay").style.opacity = "0";
-        document.body.style.background =
-          "linear-gradient(135deg, #6EE7B7, #3B82F6)";
-        const celebrationBg = document.querySelector(".celebration-bg");
-        celebrationBg.innerHTML = "";
-      }
-
-      function createParticles() {
-        // This function creates the celebratory particle effect
-        const celebrationBg = document.querySelector(".celebration-bg");
-        celebrationBg.innerHTML = ""; // Clear previous particles
-        const colors = ["#FFD700", "#FFA500", "#FF69B4", "#00FF00", "#40E0D0"];
-
-        for (let i = 0; i < 50; i++) {
-          const particle = document.createElement("div");
-          particle.className = "particle";
-          particle.style.backgroundColor =
-            colors[Math.floor(Math.random() * colors.length)]; // Random color
-          particle.style.left = Math.random() * 100 + "vw"; // Random horizontal position
-          particle.style.animationDelay = Math.random() * 2 + "s"; // Random animation delay
-          celebrationBg.appendChild(particle); // Add particle to the background
-        }
-      }
-    </script>
+    <script src="app.js"></script>
   </body>
 </html>

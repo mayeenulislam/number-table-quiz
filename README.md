@@ -14,4 +14,4 @@ This code is mostly AI-generated. The sole purpose of this code was to **let my 
 
 ## Credits
 
-I initiated the prompting with Claude.ai, then fine-tuned with Gemini 1.5 Pro 002. I took sounds from FreeSound.org and SVGs from SVGRepo.com.
+I initiated the prompting with Claude.ai, then fine-tuned with Gemini 1.5 Pro 002 and ChatGPT. I took the sounds from FreeSound.org and the SVGs from SVGRepo.com.
