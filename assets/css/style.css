@@ -64,11 +64,11 @@ h1 {
 }
 
 #instructions.text-easy {
-  color: #286dcd;
+  color: mediumseagreen;
 }
 
 #instructions.text-hard {
-  color: indianred;
+  color: red;
 }
 
 .input-group {
