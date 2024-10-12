@@ -57,7 +57,18 @@ h1 {
 #instructions {
   margin-bottom: 30px; /* Space below the instructions */
   font-size: 1.2em; /* Slightly larger font size */
-  color: #286dcd; /* Greyish color for instructions */
+}
+
+#instructions.text-moderate {
+  color: orange;
+}
+
+#instructions.text-easy {
+  color: #286dcd;
+}
+
+#instructions.text-hard {
+  color: indianred;
 }
 
 .input-group {
@@ -231,15 +242,27 @@ button:hover {
 }
 
 .difficulty-buttons button {
-  margin: 0 5px; /* Space between buttons */
+  border-radius: 0;
   padding: 8px 15px; /* Smaller padding */
   font-size: 16px; /* Smaller font size */
-  border: 2px solid #5a8cf8; /* Outlined style */
-  border-radius: 5px;
+  border-top: 2px solid #5a8cf8;
+  border-right: 2px solid #5a8cf8;
+  border-bottom: 2px solid #5a8cf8;
   background-color: transparent; /* Transparent background */
   color: #2563eb; /* Blue text color */
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+}
+
+.difficulty-buttons button:first-of-type {
+  border-left: 2px solid #5a8cf8;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.difficulty-buttons button:last-of-type {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .difficulty-buttons button.selected,

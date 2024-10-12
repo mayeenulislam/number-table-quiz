@@ -3,7 +3,7 @@ let correctAnswers = 0;
 let timer;
 let questions = [];
 let timerInterval;
-let difficulty = "high"; // Default difficulty
+let difficulty = "medium"; // Default difficulty
 let passMark = 95;
 let timePerQuestion = 5;
 
@@ -38,14 +38,17 @@ function updateInstructions() {
     case "low":
       instructions.innerHTML =
         "Get <strong>70%+</strong> marks from <strong>20 questions</strong>, <strong>15 seconds</strong> each.";
+      instructions.className = "text-easy";
       break;
     case "medium":
       instructions.innerHTML =
         "Get <strong>80%+</strong> marks from <strong>20 questions</strong>, <strong>10 seconds</strong> each.";
+      instructions.className = "text-moderate";
       break;
     case "high":
       instructions.innerHTML =
         "Get <strong>95%+</strong> marks from <strong>20 questions</strong>, <strong>5 seconds</strong> each.";
+      instructions.className = "text-hard";
       break;
   }
 }
@@ -86,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
   ).textContent = `Get ${passMark}%+ marks from 20 questions, ${timePerQuestion} seconds each`;
   document.querySelector(".input-group").classList.remove("hidden");
 
-  setDifficulty("high"); // Initialize with high difficulty on page load
+  setDifficulty(difficulty);
 
   const difficultyButtons = document.querySelectorAll(
     ".difficulty-buttons > button"
