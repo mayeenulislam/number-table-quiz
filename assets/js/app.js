@@ -6,6 +6,7 @@ let timerInterval;
 let difficulty = "medium"; // Default difficulty
 let passMark = 95;
 let timePerQuestion = 5;
+let userAnswers = [];
 
 const SOUNDS = {
   tick: new Audio("./assets/sounds/clock-ticking.mp3"),
@@ -255,6 +256,8 @@ function checkAnswer() {
   SOUNDS.tick.pause(); // Stop the tick sound
   SOUNDS.tick.currentTime = 0; // Reset tick sound
   const userAnswer = parseInt(document.getElementById("answer").value) || 0;
+  userAnswers.push(userAnswer); // Store the answer
+
   if (userAnswer === questions[currentQuestion].answer) {
     correctAnswers++;
   }
@@ -302,7 +305,24 @@ function showResults() {
     document.body.style.background =
       "linear-gradient(135deg, #9CA3AF, #6B7280)";
   }
+
+  document.getElementById("reportCardButton").classList.remove("hidden");
 }
+
+document
+  .getElementById("reportCardButton")
+  .addEventListener("click", function () {
+    generateReportCard();
+    document.getElementById("reportCardModal").showModal();
+  });
+
+// Close the modal
+document
+  .getElementById("closeReportCardButton")
+  .addEventListener("click", function () {
+    document.getElementById("reportCardModal").close();
+  });
+
 
 function resetQuiz() {
   document.getElementById("results").classList.add("hidden");
@@ -310,6 +330,7 @@ function resetQuiz() {
   document.querySelector(".gray-overlay").style.opacity = "0";
   document.body.style.background = "linear-gradient(135deg, #6EE7B7, #3B82F6)";
   const celebrationBg = document.querySelector(".celebration-bg");
+  userAnswers = [];
   celebrationBg.innerHTML = "";
 }
 
@@ -328,4 +349,38 @@ function createParticles() {
     particle.style.animationDelay = Math.random() * 2 + "s"; // Random animation delay
     celebrationBg.appendChild(particle); // Add particle to the background
   }
+}
+
+function generateReportCard() {
+  const reportCardContent = document.getElementById("reportCardContent");
+  reportCardContent.innerHTML = ""; // Clear previous content
+
+  const table = document.createElement("table");
+  const headerRow = `
+    <tr>
+      <th>Question</th>
+      <th>Your Answer</th>
+      <th>Correct Answer</th>
+      <th>Status</th>
+    </tr>
+  `;
+  table.innerHTML = headerRow;
+
+  questions.forEach((q, index) => {
+    const userAnswer = userAnswers[index]; // Assume userAnswers is a global array
+    const correctAnswer = q.answer;
+    const status = userAnswer === correctAnswer ? "✔️" : "❌";
+
+    const row = `
+      <tr>
+        <td>${q.question}</td>
+        <td>${userAnswer}</td>
+        <td>${correctAnswer}</td>
+        <td>${status}</td>
+      </tr>
+    `;
+    table.innerHTML += row;
+  });
+
+  reportCardContent.appendChild(table);
 }

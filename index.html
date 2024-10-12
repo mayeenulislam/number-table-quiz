@@ -79,6 +79,9 @@
         <h2>Quiz Results</h2>
         <p id="score"></p>
         <p id="feedback"></p>
+        <button id="reportCardButton" class="outline-button">
+          🗒️ Report Card
+        </button>
         <p id="motivationalQuote"></p>
         <button id="resetButton">
           <svg
@@ -109,6 +112,13 @@
         <a href="https://github.com/mayeenulislam/number-table-quiz">Source Code</a>
       </footer>
     </div>
+
+    <dialog id="reportCardModal" class="report-card-modal">
+      <h3>Report Card</h3>
+      <div id="reportCardContent"></div>
+      <div style="text-align: center"><button id="closeReportCardButton">Close</button></div>
+    </dialog>
+
 
     <script src="./assets/js/app.js"></script>
   </body>
