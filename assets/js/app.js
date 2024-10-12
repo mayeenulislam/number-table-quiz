@@ -183,14 +183,27 @@ function startQuiz() {
 
 function generateQuestions(min, max) {
   let questionList = [];
-  for (let i = 0; i < 20; i++) {
+  let uniqueCombinations = new Set();
+
+  while (questionList.length < 20) {
     const num1 = Math.floor(Math.random() * (max - min + 1)) + min;
     const num2 = Math.floor(Math.random() * (max - min + 1)) + min;
-    questionList.push({
-      question: `${num1} × ${num2} = ?`,
-      answer: num1 * num2,
-    });
+    const combination = `${num1} × ${num2}`;
+
+    if (max - min > 3 && !uniqueCombinations.has(combination)) {
+      questionList.push({
+        question: `${combination} = ?`,
+        answer: num1 * num2,
+      });
+      uniqueCombinations.add(combination);
+    } else {
+      questionList.push({
+        question: `${combination} = ?`,
+        answer: num1 * num2,
+      });
+    }
   }
+
   return questionList;
 }
 
